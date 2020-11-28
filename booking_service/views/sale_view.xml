@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--##################################################
+
+   Create Date/Time: Nov XX, 2020/00:00 AM
+   Author: Nathan Sadeli
+
+##################################################-->
+<odoo>
+	<data>
+    	<!--__________ Inherited Sale Order Form View __________-->
+		<record model="ir.ui.view" id="booking_service.sale_order_formview_inherit_id">
+			<field name="name">sale_order form_view inherited</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//form/header" position="inside">
+					<button name="action_validate_booking_order" string="Validate" class="btn-primary" />
+					<button name="action_check_booking_order" string="Check" />
+				</xpath>
+
+				<!--<xpath expr="//field[@name='user_id']/.." position="before">-->
+				<xpath expr="//field[@name='user_id']" position="before">
+					<field name="is_a_booking" />
+				</xpath>
+
+				<xpath expr="//field[@name='partner_id']" position="after">
+					<field name="the_team_id" attrs="{'invisible': [('is_a_booking','=',False)]}" />
+					<field name="team_leader_id" attrs="{'invisible': [('is_a_booking','=',False)]}" />
+				</xpath>
+
+				<xpath expr="//notebook" position="before">
+					<group name="booking_employee_container_root">
+						<field name="employee_ids" nolabel="1" attrs="{'invisible': [('is_a_booking','=',False)]}">
+							<tree string="kolom-kolom" editable="bottom">
+								<field name="employee_id" string="Employees" />
+							</tree>
+						</field>
+					</group>
+					<group name="booking_equipment_container_root">
+						<field name="equipment_ids" nolabel="1" attrs="{'invisible': [('is_a_booking','=',False)]}">
+							<tree string="kolom-kolom" editable="bottom">
+								<field name="product_id" string="Equipments" domain="[('is_an_equipment','=',1)]" required="True" />
+								<field name="serial_number_id" string="Serial Numbers" domain="[('product_id.id','=',product_id)]" required="True" />
+							</tree>
+						</field>
+					</group>
+				</xpath>
+
+				<xpath expr="//field[@name='payment_term_id']" position="after">
+					<field name="booking_start" required="True" attrs="{'invisible': [('is_a_booking','=',False)]}" />
+					<field name="booking_end" required="True" attrs="{'invisible': [('is_a_booking','=',False)]}">
+						<p>
+							<h6>* by default Booking End = Booking Start +1 hours</h6>
+						</p>
+					</field>
+				</xpath>
+		    </field>
+		</record>
+	</data>
+</odoo>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--##################################################
+
+   Create Date/Time: Nov XX, 2020/00:00 AM
+   Author: Nathan Sadeli
+
+##################################################-->
+<odoo>
+	<data>
+    	<!--__________ Team Form View __________-->
+		<record model="ir.ui.view" id="booking_service.team_formview_id">
+			<field name="name">team form_view</field>
+			<field name="model">booking_service.team</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<div class="oe_button_box" name="button_box" >
+							<div>
+								<!--<button name="action_view_calendar_by_sn"
+									type="object"
+									class="oe_stat_button"
+									icon="fa-calendar">
+									<span class="o_stat_text  text-success">Events</span>
+								</button>-->
+							</div>
+						</div>
+						<div class="oe_title">
+							<label for="name" string="Team Name"/>
+							<h1><field name="name" required="True" /></h1>
+						</div>
+
+						<group>
+							<group>
+								<field name="team_leader_id" />
+							</group>
+						</group>
+						<group>
+							<field name="employee_ids" nolabel="1">
+								<tree string="kolom-kolom" editable="bottom">
+									<field name="employee_id" string="Employees" />
+								</tree>
+							</field>
+						</group>
+						<group>
+							<field name="equipment_ids" nolabel="1" required="True" >
+								<tree string="kolom-kolom" editable="bottom">
+									<field name="product_id" string="Equipments" domain="[('is_an_equipment','=',1)]" required="True" />
+									<field name="serial_number_id" string="Serial Numbers" domain="[('product_id.id','=',product_id)]" required="True" />
+								</tree>
+							</field>
+						</group>
+					</sheet>
+				</form>
+		    </field>
+		</record>
+	</data>
+</odoo>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--##################################################
+
+   Create Date/Time: Nov XX, 2020/00:00 AM
+   Author: Nathan Sadeli
+
+##################################################-->
+<odoo>
+  <data>
+    <record  id="team_action_tree" model="ir.actions.act_window">
+      <field name="name">Team</field>
+      <field name="res_model">booking_service.team</field>
+      <field name="target">current</field>
+      <field name="context">{}</field>
+      <field name="domain">[]</field>
+      <field name="limit">80</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+          Click to define a new data.
+        </p>
+      </field>
+    </record>
+
+    <!--<record id="sale.action_quotations" model="ir.actions.act_window">
+      <field name="domain">[('is_a_booking', '=', False)]</field>
+    </record>-->
+
+    <record id="sale.action_orders" model="ir.actions.act_window">
+      <field name="domain">[('state', 'not in', ('draft', 'sent', 'cancel')),('is_a_booking', '=', False)]</field>
+    </record>
+
+    <record id="sale_order_from_booking_order_action_tree" model="ir.actions.act_window">
+        <field name="name">Sales Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form,calendar,pivot,graph</field>
+        <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale"/>
+        <field name="context">{'default_is_a_booking':True}</field>
+        <field name="domain">[('state', 'not in', ('draft', 'sent', 'cancel')),('is_a_booking', '=', True)]</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create a Quotation, the first step of a new sale.
+            </p><p>
+                Once the quotation is confirmed, it becomes a sales order.
+                You'll be able to invoice it and collect payments.
+                From the <i>Sales Orders</i> menu, you can track delivery
+                orders or services.
+            </p>
+        </field>
+    </record>
+  </data>
+</odoo>

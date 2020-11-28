@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--##################################################
+
+   Create Date/Time: Nov XX, 2020/00:00 AM
+   Author: Nathan Sadeli
+
+##################################################-->
+<odoo>
+	<data>
+    	<!--__________ Inherited Calendar Event Form View __________-->
+		<record model="ir.ui.view" id="booking_service.calendar_event_formview_inherit_id">
+			<field name="name">calendar_event form_view inherited</field>
+			<field name="model">calendar.event</field>
+			<field name="inherit_id" ref="calendar.view_calendar_event_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//h2" position="after">
+					<label for="equipment_ids" string="Equipments" />
+					<field name="equipment_ids" string="Equipments">
+						<tree string="kolom-kolom" editable="bottom">
+							<field name="product_id" string="Equipments" domain="[('is_an_equipment','=',1)]" />
+							<field name="serial_number_id" string="Serial Numbers" domain="[('product_id.id','=',product_id)]" />
+						</tree>
+					</field>
+				</xpath>
+		    </field>
+		</record>
+	</data>
+</odoo>

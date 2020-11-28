@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--##################################################
+
+   Create Date/Time: Nov XX, 2020/00:00 AM
+   Author: Nathan Sadeli
+
+##################################################-->
+<odoo>
+	<data>
+    	<!--__________ Inherited Product Template Form View __________-->
+		<record model="ir.ui.view" id="booking_service.product_template_formview_inherit_id">
+			<field name="name">product_template form_view inherited</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="product.product_template_only_form_view"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='type']" position="before">
+					<field name="is_an_equipment" />
+				</xpath>
+				<notebook position="inside">
+				    <page string="Serial Numbers">
+						<field name="serial_no_ids" nolabel="1">
+							 <tree string="kolom-kolom" editable="bottom">
+								 <field name="serial_no" />
+							 </tree>
+						</field>
+					</page>
+				</notebook>
+		    </field>
+		</record>
+
+		<!--__________ Inherited Product Product Form View __________-->
+		<record model="ir.ui.view" id="booking_service.product_product_formview_inherit_id">
+			<field name="name">product_product form_view inherited</field>
+			<field name="model">product.product</field>
+			<field name="inherit_id" ref="product.product_normal_form_view"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='type']" position="before">
+					<field name="is_an_equipment"></field>
+				</xpath>
+				<notebook position="inside">
+				    <page string="Serial Numbers">
+						<field name="serial_no_ids" nolabel="1">
+							 <tree string="kolom-kolom" editable="bottom">
+								 <field name="serial_no" />
+							 </tree>
+						</field>
+					</page>
+				</notebook>
+		    </field>
+		</record>
+	</data>
+</odoo>

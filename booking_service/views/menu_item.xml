@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--##################################################
+
+   Create Date/Time: Nov XX, 2020/00:00 AM
+   Author: Nathan Sadeli
+
+##################################################-->
+<odoo>
+    <data>
+        <!-- __________ MENU __________ -->
+            <!--__Menu-Level-2__-->
+            <!--<menuitem name="Invoicing" id="sale.menu_sale_order" action=""/>-->
+        <!-- __Menu-Top__  -->
+        <menuitem id="bo_menu_root" name="Booking" parent="sales_team.menu_base_partner" sequence="5" />
+            <!--__Menu-Level-2__-->
+            <menuitem id="bo_menu_1" name="Booking Order" parent="bo_menu_root" sequence="501" action="booking_service.sale_order_from_booking_order_action_tree"/>
+            <menuitem id="bo_menu_2" name="Work Order" parent="bo_menu_root" sequence="502" action="sale.action_orders"/>
+            <menuitem id="bo_menu_3" name="Team" parent="bo_menu_root" sequence="503" action="booking_service.team_action_tree"/>
+                <!--__Menu-Level-3__-->
+                <!--<menuitem name="Lain-lain" parent="vms_menu_5" id="konfigurasi_menu_2" sequence="210" />-->
+                    <!--__Menu-Level-4__-->
+                    <!--<menuitem name="Pengguna" parent="konfigurasi_menu_2" id="konfigurasi_menu_2_1" sequence="211" action="vms.action_inherit_res_users" />-->
+        <menuitem name="Invoicing" id="sale.menu_sale_invoicing" parent="sales_team.menu_base_partner" sequence="6"/>
+    </data>
+</odoo>

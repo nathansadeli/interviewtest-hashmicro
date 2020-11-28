@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--##################################################
+
+   Create Date/Time: Nov XX, 2020/00:00 AM
+   Author: Nathan Sadeli
+
+##################################################-->
+<odoo>
+	<data>
+		<record id="action_view_calendar_sn" model="ir.actions.act_window">
+			<field name="name">Calendar</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">calendar.event</field>
+			<field name="view_mode">calendar,tree,form</field>
+			<field name="context">{}</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click to define a new data.
+				</p>
+			</field>
+		</record>
+
+    	<!--__________ Inherited Product Template Form View __________-->
+		<record model="ir.ui.view" id="booking_service.serial_number_formview_id">
+			<field name="name">serial_number form_view</field>
+			<field name="model">booking_service.serial_number</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<div class="oe_button_box" name="button_box" >
+							<div>
+								<!--<button name="%(action_view_calendar_sn)d"
+										type="action"
+										class="oe_stat_button"
+										icon="fa-calendar" >
+									<span class="o_stat_text  text-success">Events</span>
+								</button>-->
+								<button name="action_view_calendar_by_sn"
+									type="object"
+									class="oe_stat_button"
+									icon="fa-calendar">
+									<span class="o_stat_text  text-success">Events</span>
+								</button>
+							</div>
+						</div>
+						<div class="oe_title">
+							<label for="serial_no" string="Serial Number"/>
+							<h1><field name="serial_no" /></h1>
+						</div>
+
+						<group>
+							<group>
+								<!--<field name="calendar_id" />-->
+							</group>
+						</group>
+					</sheet>
+				</form>
+		    </field>
+		</record>
+	</data>
+</odoo>
